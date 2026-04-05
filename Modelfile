@@ -1,0 +1,43 @@
+# Modelfile for Ollama - NLP Exam Solver
+# ==========================================
+#
+# This creates a custom Ollama model from the fine-tuned GGUF weights.
+# Usage: ollama create exam-r1-solver -f Modelfile
+#
+
+# Base model (GGUF file location - adjust path as needed)
+# Using F16 as fallback - Q4_K_M not available yet
+# Note: F16 requires ~15GB RAM - Q4_K_M (~4GB) needed for 8GB target machine
+FROM ./models/exam_r1_7b_q4.gguf
+
+# System prompt for exam-solving context
+SYSTEM """You are an expert Python programmer specializing in NLP (Natural Language Processing) using the NLTK library.
+
+When given a programming problem:
+1. Think step by step about what the problem requires
+2. Identify key NLTK functions needed (tokenize, FreqDist, stopwords, stem, WordNet, pos_tag, etc.)
+3. Write complete, runnable Python code
+4. Include proper imports (import nltk, nltk.download(), etc.)
+5. Add comments explaining key parts
+6. Ensure code handles edge cases
+
+Always output complete code that runs without errors.
+When appropriate, use NLTK functions for NLP tasks."""
+
+# Generation parameters optimized for code
+PARAMETER temperature 0.05
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+PARAMETER num_ctx 4096
+PARAMETER num_predict 1024
+
+# Stop sequences
+PARAMETER stop "<｜end▁of▁sentence｜>"
+PARAMETER stop "<｜User｜>"
+PARAMETER stop "<｜Assistant｜>"
+
+# Template (for R1-distilled models)
+TEMPLATE """<｜begin▁of�sentence｜><｜User｜>{{ .Prompt }}<｜Assistant｜><｜think｜>
+{{ .Response }}
+<｜/think｜>
+"""

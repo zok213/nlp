@@ -1,0 +1,51 @@
+# Sisyphus agent system
+.sisyphus/
+
+# Environment files
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.venv
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Data and models
+data/
+models/
+*.pickle
+*.pkl
+*.joblib
+*.h5
+*.pth
+*.ckpt
+*.pt
+
+# Temporary files
+tmp/
+temp/
+*.tmp

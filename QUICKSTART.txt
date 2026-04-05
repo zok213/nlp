@@ -1,0 +1,76 @@
+================================================================================
+                    NLP EXAM SOLVER - QUICK START
+================================================================================
+
+📦 WHAT YOU HAVE:
+   Complete offline AI system for solving NLP exam questions
+
+⚡ ONE-COMMAND SETUP (on Windows machine):
+   .\install.ps1
+
+   The installer will:
+   1. Install Ollama (if needed)
+   2. Extract model weights from data/gguf_model.zip
+   3. Offer to convert model (~1-2 hours) - PRESS Y
+   4. Pull vision model qwen2.5vl:3b (2 GB, ~5 min)
+   5. Create exam-r1-solver model
+   6. Validate everything
+
+🚀 AFTER INSTALLATION:
+   ollama serve                    # Start Ollama (keep running)
+   python exam_solver.py --interactive   # Interactive mode
+   python exam_solver.py "Your question here"   # Single question
+   python exam_solver_pipeline.py exam_image.jpg   # From image
+
+📋 CHECKLIST BEFORE RUNNING:
+   □ NLP folder transferred to Windows machine (12 GB total)
+   □ data/gguf_model.zip exists (12 GB)
+   □ PowerShell run as Administrator
+   □ ~20 GB free disk space (for conversion)
+
+⏱️  TIME REQUIRED:
+   • First-time setup: 1-2 hours (mostly conversion)
+   • Subsequent use: immediate
+   • Per-question inference: 10-30 seconds
+
+💾 SYSTEM REQUIREMENTS:
+   • Windows 10 (21H2+) or Windows 11
+   • 8 GB RAM (16 GB recommended)
+   • 6 GB free disk space
+   • Internet (first time only)
+
+🔧 TROUBLESHOOTING:
+
+   Problem: "convert_to_gguf.py not found"
+   Solution: Make sure you're in the NLP/ directory
+
+   Problem: "Out of memory during conversion"
+   Solution: Ensure ~20 GB free disk space, close other apps
+
+   Problem: "Ollama command not recognized"
+   Solution: Restart PowerShell after install, or run: .\install.ps1
+
+   Problem: "GGUF file too small (< 3 GB)"
+   Solution: Conversion incomplete, run: python convert_to_gguf.py --force
+
+📚 FILES TO KNOW:
+   install.ps1              → Main installer (run this first)
+   convert_to_gguf.py       → Converts model (automatically called)
+   exam_solver.py           → Use this for questions
+   README.md                → Full documentation (if needed)
+   validate_setup.py        → Check everything is OK
+
+✅ SUCCESS INDICATORS:
+   • ollama list shows: exam-r1-solver
+   • python exam_solver.py --interactive works
+   • validate_setup.py shows all [OK]
+
+📞 NEED HELP?
+   Check README.md for detailed troubleshooting
+   Or run: python validate_setup.py
+
+================================================================================
+                           READY TO INSTALL?
+   Open PowerShell as Administrator, navigate to NLP folder, run:
+                     .\install.ps1
+================================================================================
